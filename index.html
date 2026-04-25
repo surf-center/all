@@ -7,53 +7,57 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  html, body { height: 100%; }
+
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
     background: #f8fafc;
     background-image:
-      radial-gradient(at 20% 0%, rgba(225, 29, 72, 0.06) 0px, transparent 50%),
-      radial-gradient(at 80% 100%, rgba(59, 130, 246, 0.05) 0px, transparent 50%);
-    min-height: 100vh;
+      radial-gradient(at 20% 0%, rgba(225, 29, 72, 0.05) 0px, transparent 50%),
+      radial-gradient(at 80% 100%, rgba(59, 130, 246, 0.04) 0px, transparent 50%);
     color: #0f172a;
-    padding: 80px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
   }
 
   .container {
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1080px;
     margin: 0 auto;
   }
 
   header {
     text-align: center;
-    margin-bottom: 64px;
+    margin-bottom: 48px;
   }
 
   .logo {
     display: inline-block;
-    transition: transform 0.3s ease;
+    transition: opacity 0.2s ease;
   }
 
-  .logo:hover {
-    transform: scale(1.04);
-  }
+  .logo:hover { opacity: 0.7; }
 
   .logo img {
-    height: 110px;
+    height: 56px;
     width: auto;
     display: block;
   }
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    justify-content: center;
   }
 
   .card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 18px;
-    padding: 30px;
+    padding: 28px;
     text-decoration: none;
     color: inherit;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -61,7 +65,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
     min-height: 180px;
     box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
   }
@@ -83,30 +87,39 @@
     box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
   }
 
-  .card:hover::before {
-    transform: scaleX(1);
-  }
+  .card:hover::before { transform: scaleX(1); }
 
   .card-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 26px;
     background: var(--accent-bg);
+    overflow: hidden;
+  }
+
+  .card-icon img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+
+  .card-icon .emoji {
+    font-size: 24px;
+    line-height: 1;
   }
 
   .card-title {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 600;
     letter-spacing: -0.01em;
     color: #0f172a;
   }
 
   .card-desc {
-    font-size: 14px;
+    font-size: 13.5px;
     color: #64748b;
     line-height: 1.5;
     flex-grow: 1;
@@ -122,13 +135,8 @@
     margin-top: auto;
   }
 
-  .card:hover .card-arrow svg {
-    transform: translateX(4px);
-  }
-
-  .card-arrow svg {
-    transition: transform 0.3s;
-  }
+  .card:hover .card-arrow svg { transform: translateX(4px); }
+  .card-arrow svg { transition: transform 0.3s; }
 
   /* per-card colors */
   .card.calculator { --accent: #f59e0b; --accent-bg: #fef3c7; }
@@ -138,9 +146,9 @@
   .card.dashboard  { --accent: #7c3aed; --accent-bg: #ede9fe; }
 
   @media (max-width: 600px) {
-    body { padding: 48px 16px; }
-    .logo img { height: 80px; }
-    .card { padding: 24px; }
+    body { padding: 32px 16px; }
+    .logo img { height: 44px; }
+    .card { padding: 22px; min-height: 160px; }
   }
 </style>
 </head>
@@ -156,7 +164,9 @@
   <div class="grid">
 
     <a href="https://surf-center.github.io/calculator/" class="card calculator" target="_blank" rel="noopener">
-      <div class="card-icon">🔢</div>
+      <div class="card-icon">
+        <span class="emoji">🔢</span>
+      </div>
       <div class="card-title">Calculator</div>
       <div class="card-desc">Bereken prijzen, marges en offertes</div>
       <div class="card-arrow">
@@ -166,7 +176,11 @@
     </a>
 
     <a href="https://surf-center.github.io/my-balance/" class="card balance" target="_blank" rel="noopener">
-      <div class="card-icon">💰</div>
+      <div class="card-icon">
+        <img src="https://surf-center.github.io/my-balance/favicon.ico"
+             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>💰</span>';"
+             alt="">
+      </div>
       <div class="card-title">My Balance</div>
       <div class="card-desc">Bekijk je saldo en financiële overzicht</div>
       <div class="card-arrow">
@@ -176,7 +190,11 @@
     </a>
 
     <a href="https://surf-center.github.io/tracking/" class="card tracking" target="_blank" rel="noopener">
-      <div class="card-icon">📦</div>
+      <div class="card-icon">
+        <img src="https://surf-center.github.io/tracking/favicon.ico"
+             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>📦</span>';"
+             alt="">
+      </div>
       <div class="card-title">Tracking</div>
       <div class="card-desc">Volg activiteiten en voortgang</div>
       <div class="card-arrow">
@@ -186,7 +204,11 @@
     </a>
 
     <a href="https://surf-center.github.io/sales/" class="card sales" target="_blank" rel="noopener">
-      <div class="card-icon">🏷️</div>
+      <div class="card-icon">
+        <img src="https://surf-center.github.io/sales/favicon.ico"
+             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>🏷️</span>';"
+             alt="">
+      </div>
       <div class="card-title">Sales</div>
       <div class="card-desc">Verkoopcijfers en omzet inzichten</div>
       <div class="card-arrow">
@@ -196,7 +218,11 @@
     </a>
 
     <a href="https://surf-center.github.io/dashboard/" class="card dashboard" target="_blank" rel="noopener">
-      <div class="card-icon">📊</div>
+      <div class="card-icon">
+        <img src="https://surf-center.github.io/dashboard/favicon.ico"
+             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>📊</span>';"
+             alt="">
+      </div>
       <div class="card-title">Dashboard</div>
       <div class="card-desc">Compleet overzicht van alle KPI's</div>
       <div class="card-arrow">
