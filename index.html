@@ -8,9 +8,7 @@
 <link rel="apple-touch-icon" href="https://surf-center.com/apple-touch-icon.png">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   html, body { height: 100%; }
-
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
     background: #f8fafc;
@@ -23,38 +21,31 @@
     justify-content: center;
     padding: 48px 24px;
   }
-
   .container {
     width: 100%;
     max-width: 1080px;
     margin: 0 auto;
   }
-
   header {
     text-align: center;
     margin-bottom: 48px;
   }
-
   .logo {
     display: inline-block;
     transition: opacity 0.2s ease;
   }
-
   .logo:hover { opacity: 0.7; }
-
   .logo img {
     height: 56px;
     width: auto;
     display: block;
   }
-
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 20px;
     justify-content: center;
   }
-
   .card {
     background: #ffffff;
     border: 1px solid #e2e8f0;
@@ -71,7 +62,6 @@
     min-height: 180px;
     box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
   }
-
   .card::before {
     content: '';
     position: absolute;
@@ -82,15 +72,12 @@
     transform-origin: left;
     transition: transform 0.3s;
   }
-
   .card:hover {
     transform: translateY(-4px);
     border-color: var(--accent);
     box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
   }
-
   .card:hover::before { transform: scaleX(1); }
-
   .card-icon {
     width: 48px;
     height: 48px;
@@ -101,32 +88,27 @@
     background: var(--accent-bg);
     overflow: hidden;
   }
-
   .card-icon img {
     width: 28px;
     height: 28px;
     object-fit: contain;
   }
-
   .card-icon .emoji {
     font-size: 24px;
     line-height: 1;
   }
-
   .card-title {
     font-size: 20px;
     font-weight: 600;
     letter-spacing: -0.01em;
     color: #0f172a;
   }
-
   .card-desc {
     font-size: 13.5px;
     color: #64748b;
     line-height: 1.5;
     flex-grow: 1;
   }
-
   .card-arrow {
     display: flex;
     align-items: center;
@@ -136,17 +118,14 @@
     font-weight: 600;
     margin-top: auto;
   }
-
   .card:hover .card-arrow svg { transform: translateX(4px); }
   .card-arrow svg { transition: transform 0.3s; }
-
   /* per-card colors */
   .card.calculator { --accent: #f59e0b; --accent-bg: #fef3c7; }
   .card.balance    { --accent: #059669; --accent-bg: #d1fae5; }
   .card.tracking   { --accent: #2563eb; --accent-bg: #dbeafe; }
   .card.sales      { --accent: #db2777; --accent-bg: #fce7f3; }
   .card.dashboard  { --accent: #7c3aed; --accent-bg: #ede9fe; }
-
   @media (max-width: 600px) {
     body { padding: 32px 16px; }
     .logo img { height: 44px; }
@@ -156,27 +135,23 @@
 </head>
 <body>
 <div class="container">
-
   <header>
     <a href="https://surf-center.com" class="logo" target="_blank" rel="noopener">
       <img src="logo.png" alt="Surfcenter">
     </a>
   </header>
-
   <div class="grid">
-
     <a href="https://surf-center.github.io/calculator/" class="card calculator" target="_blank" rel="noopener">
       <div class="card-icon">
         <span class="emoji">🔢</span>
       </div>
       <div class="card-title">Calculator</div>
-      <div class="card-desc">Bereken prijzen, marges en offertes</div>
+      <div class="card-desc">Bereken prijzen en marges</div>
       <div class="card-arrow">
         Open
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </div>
     </a>
-
     <a href="https://surf-center.github.io/my-balance/" class="card balance" target="_blank" rel="noopener">
       <div class="card-icon">
         <img src="https://surf-center.github.io/my-balance/favicon.ico"
@@ -184,13 +159,12 @@
              alt="">
       </div>
       <div class="card-title">My Balance</div>
-      <div class="card-desc">Bekijk je saldo en financiële overzicht</div>
+      <div class="card-desc">Inzicht in je consignatie status en saldo</div>
       <div class="card-arrow">
         Open
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </div>
     </a>
-
     <a href="https://surf-center.github.io/tracking/" class="card tracking" target="_blank" rel="noopener">
       <div class="card-icon">
         <img src="https://surf-center.github.io/tracking/favicon.ico"
@@ -198,13 +172,12 @@
              alt="">
       </div>
       <div class="card-title">Tracking</div>
-      <div class="card-desc">Volg activiteiten en voortgang</div>
+      <div class="card-desc">Volg de status van je orders</div>
       <div class="card-arrow">
         Open
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </div>
     </a>
-
     <a href="https://surf-center.github.io/sales/" class="card sales" target="_blank" rel="noopener">
       <div class="card-icon">
         <img src="https://surf-center.github.io/sales/favicon.ico"
@@ -212,13 +185,12 @@
              alt="">
       </div>
       <div class="card-title">Sales</div>
-      <div class="card-desc">Verkoopcijfers en omzet inzichten</div>
+      <div class="card-desc">Producten inzien en orders doorgeven</div>
       <div class="card-arrow">
         Open
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </div>
     </a>
-
     <a href="https://surf-center.github.io/dashboard/" class="card dashboard" target="_blank" rel="noopener">
       <div class="card-icon">
         <img src="https://surf-center.github.io/dashboard/favicon.ico"
@@ -226,15 +198,13 @@
              alt="">
       </div>
       <div class="card-title">Dashboard</div>
-      <div class="card-desc">Compleet overzicht van alle KPI's</div>
+      <div class="card-desc">Overzicht en inzichten van de omzet en bestellingen</div>
       <div class="card-arrow">
         Open
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </div>
     </a>
-
   </div>
-
 </div>
 </body>
 </html>
