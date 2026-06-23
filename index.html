@@ -121,7 +121,6 @@
   }
   .card:hover .card-arrow svg { transform: translateX(4px); }
   .card-arrow svg { transition: transform 0.3s; }
-  /* kaart met twee links */
   .card-links {
     display: flex;
     flex-direction: column;
@@ -143,13 +142,11 @@
   }
   .card-link:hover { filter: brightness(0.93); }
   .card-link svg { flex-shrink: 0; }
-  /* per-card colors */
   .card.calculator { --accent: #f59e0b; --accent-bg: #fef3c7; }
   .card.balance    { --accent: #059669; --accent-bg: #d1fae5; }
   .card.tracking   { --accent: #2563eb; --accent-bg: #dbeafe; }
   .card.sales      { --accent: #db2777; --accent-bg: #fce7f3; }
   .card.dashboard  { --accent: #7c3aed; --accent-bg: #ede9fe; }
-  .card.margins    { --accent: #ea580c; --accent-bg: #ffedd5; }
   .card.leads      { --accent: #0ea5e9; --accent-bg: #e0f2fe; }
   @media (max-width: 600px) {
     body { padding: 32px 16px; }
@@ -211,31 +208,21 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </div>
     </a>
-    <a href="https://surf-center.github.io/dashboard/" class="card dashboard" target="_blank" rel="noopener">
-      <div class="card-icon">
-        <img src="https://surf-center.github.io/dashboard/favicon.ico"
-             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>📊</span>';" alt="">
+    <div class="card dashboard">
+      <div class="card-icon"><span class="emoji">📊</span></div>
+      <div class="card-title">Dashboards</div>
+      <div class="card-desc">Omzet, bestellingen en marges</div>
+      <div class="card-links">
+        <a href="https://surf-center.github.io/dashboard/" class="card-link" target="_blank" rel="noopener">
+          Webshop
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="https://surf-center.github.io/sales-dashboard/" class="card-link" target="_blank" rel="noopener">
+          Sales
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
-      <div class="card-title">Webshop<br>Dashboard</div>
-      <div class="card-desc">Omzet en bestellingen van de webshop</div>
-      <div class="card-arrow">
-        Open
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </div>
-    </a>
-    <a href="https://surf-center.github.io/sales-dashboard/" class="card margins" target="_blank" rel="noopener">
-      <div class="card-icon">
-        <img src="https://surf-center.github.io/sales-dashboard/favicon.ico"
-             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>📈</span>';" alt="">
-      </div>
-      <div class="card-title">Sales<br>Dashboard</div>
-      <div class="card-desc">Inzicht in marges en winstgevendheid per product</div>
-      <div class="card-arrow">
-        Open
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </div>
-    </a>
-    <!-- Sales Leads: geen <a> om de hele kaart, want we hebben twee aparte links -->
+    </div>
     <div class="card leads">
       <div class="card-icon"><span class="emoji">🎯</span></div>
       <div class="card-title">Sales Leads</div>
