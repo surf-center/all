@@ -121,13 +121,36 @@
   }
   .card:hover .card-arrow svg { transform: translateX(4px); }
   .card-arrow svg { transition: transform 0.3s; }
+  /* kaart met twee links */
+  .card-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+  }
+  .card-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 14px;
+    border-radius: 10px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: filter 0.2s;
+  }
+  .card-link:hover { filter: brightness(0.93); }
+  .card-link svg { flex-shrink: 0; }
+  /* per-card colors */
   .card.calculator { --accent: #f59e0b; --accent-bg: #fef3c7; }
   .card.balance    { --accent: #059669; --accent-bg: #d1fae5; }
   .card.tracking   { --accent: #2563eb; --accent-bg: #dbeafe; }
   .card.sales      { --accent: #db2777; --accent-bg: #fce7f3; }
   .card.dashboard  { --accent: #7c3aed; --accent-bg: #ede9fe; }
   .card.margins    { --accent: #ea580c; --accent-bg: #ffedd5; }
-  .card.trengo     { --accent: #0ea5e9; --accent-bg: #e0f2fe; }
+  .card.leads      { --accent: #0ea5e9; --accent-bg: #e0f2fe; }
   @media (max-width: 600px) {
     body { padding: 32px 16px; }
     .logo img { height: 44px; }
@@ -144,9 +167,7 @@
   </header>
   <div class="grid">
     <a href="https://surf-center.github.io/calculator/" class="card calculator" target="_blank" rel="noopener">
-      <div class="card-icon">
-        <span class="emoji">🔢</span>
-      </div>
+      <div class="card-icon"><span class="emoji">🔢</span></div>
       <div class="card-title">Margin<br>Calculator</div>
       <div class="card-desc">Bereken prijzen en marges</div>
       <div class="card-arrow">
@@ -157,8 +178,7 @@
     <a href="https://surf-center.github.io/my-balance/" class="card balance" target="_blank" rel="noopener">
       <div class="card-icon">
         <img src="https://surf-center.github.io/my-balance/favicon.ico"
-             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>💰</span>';"
-             alt="">
+             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>💰</span>';" alt="">
       </div>
       <div class="card-title">My Balance</div>
       <div class="card-desc">Inzicht in je consignatie status en saldo</div>
@@ -170,8 +190,7 @@
     <a href="https://surf-center.github.io/tracking/" class="card tracking" target="_blank" rel="noopener">
       <div class="card-icon">
         <img src="https://surf-center.github.io/tracking/favicon.ico"
-             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>📦</span>';"
-             alt="">
+             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>📦</span>';" alt="">
       </div>
       <div class="card-title">Tracking</div>
       <div class="card-desc">Volg de status van je orders</div>
@@ -183,8 +202,7 @@
     <a href="https://surf-center.github.io/sales/" class="card sales" target="_blank" rel="noopener">
       <div class="card-icon">
         <img src="https://surf-center.github.io/sales/favicon.ico"
-             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>🏷️</span>';"
-             alt="">
+             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>🏷️</span>';" alt="">
       </div>
       <div class="card-title">Sales</div>
       <div class="card-desc">Producten inzien en orders doorgeven</div>
@@ -196,8 +214,7 @@
     <a href="https://surf-center.github.io/dashboard/" class="card dashboard" target="_blank" rel="noopener">
       <div class="card-icon">
         <img src="https://surf-center.github.io/dashboard/favicon.ico"
-             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>📊</span>';"
-             alt="">
+             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>📊</span>';" alt="">
       </div>
       <div class="card-title">Webshop<br>Dashboard</div>
       <div class="card-desc">Omzet en bestellingen van de webshop</div>
@@ -209,8 +226,7 @@
     <a href="https://surf-center.github.io/sales-dashboard/" class="card margins" target="_blank" rel="noopener">
       <div class="card-icon">
         <img src="https://surf-center.github.io/sales-dashboard/favicon.ico"
-             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>📈</span>';"
-             alt="">
+             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>📈</span>';" alt="">
       </div>
       <div class="card-title">Sales<br>Dashboard</div>
       <div class="card-desc">Inzicht in marges en winstgevendheid per product</div>
@@ -219,17 +235,22 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </div>
     </a>
-    <a href="https://app.trengo.com/tickets" class="card trengo" target="_blank" rel="noopener">
-      <div class="card-icon">
-        <span class="emoji">💬</span>
+    <!-- Sales Leads: geen <a> om de hele kaart, want we hebben twee aparte links -->
+    <div class="card leads">
+      <div class="card-icon"><span class="emoji">🎯</span></div>
+      <div class="card-title">Sales Leads</div>
+      <div class="card-desc">Nieuwe leads via WhatsApp of de webshop</div>
+      <div class="card-links">
+        <a href="https://app.trengo.com/tickets" class="card-link" target="_blank" rel="noopener">
+          WhatsApp
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="https://surf-center.com/scdev_admin/xnotif/subscription/index/key/52bb4178aed591b3e9f55e33abad49923efdfb08b9ed0d22db8b8c73312b23b5/" class="card-link" target="_blank" rel="noopener">
+          Webshop
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
-      <div class="card-title">Trengo<br>Messages</div>
-      <div class="card-desc">Berichten en klantcommunicatie</div>
-      <div class="card-arrow">
-        Open
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </div>
-    </a>
+    </div>
   </div>
 </div>
 </body>
