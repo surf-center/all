@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Surfcenter — Overzicht</title>
+<title>Surfcenter ‚Äî Overzicht</title>
 <link rel="icon" href="https://surf-center.com/favicon.ico">
 <link rel="apple-touch-icon" href="https://surf-center.com/apple-touch-icon.png">
 <style>
@@ -29,6 +29,31 @@
   header {
     text-align: center;
     margin-bottom: 48px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .admin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    color: #64748b;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+  }
+  .admin-btn:hover {
+    border-color: #cbd5e1;
+    color: #0f172a;
+    background: #f8fafc;
   }
   .logo {
     display: inline-block;
@@ -139,6 +164,10 @@
     font-weight: 600;
     text-decoration: none;
     transition: filter 0.2s;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    text-align: left;
   }
   .card-link:hover { filter: brightness(0.93); }
   .card-link svg { flex-shrink: 0; }
@@ -148,10 +177,74 @@
   .card.sales      { --accent: #db2777; --accent-bg: #fce7f3; }
   .card.dashboard  { --accent: #7c3aed; --accent-bg: #ede9fe; }
   .card.leads      { --accent: #0ea5e9; --accent-bg: #e0f2fe; }
+  .card.warranty   { --accent: #16a34a; --accent-bg: #dcfce7; }
+
+  /* Modal */
+  #iframeModal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  #iframeModal.open {
+    display: flex;
+  }
+  #iframeModal .modal-box {
+    background: #fff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 1100px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 80px rgba(15, 23, 42, 0.2);
+  }
+  #iframeModal .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e2e8f0;
+    flex-shrink: 0;
+  }
+  #iframeModal .modal-header span {
+    font-weight: 700;
+    font-size: 15px;
+    color: #0f172a;
+  }
+  #iframeModal .modal-close {
+    background: #f1f5f9;
+    border: none;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    transition: background 0.15s;
+  }
+  #iframeModal .modal-close:hover { background: #e2e8f0; color: #0f172a; }
+  #iframeModal iframe {
+    flex: 1;
+    border: none;
+    width: 100%;
+  }
+
   @media (max-width: 600px) {
     body { padding: 32px 16px; }
     .logo img { height: 44px; }
     .card { padding: 22px; min-height: 160px; }
+    #iframeModal { padding: 0; }
+    #iframeModal .modal-box { border-radius: 0; height: 100vh; max-width: 100%; }
   }
 </style>
 </head>
@@ -161,12 +254,27 @@
     <a href="https://surf-center.com" class="logo" target="_blank" rel="noopener">
       <img src="logo.png" alt="Surfcenter">
     </a>
+    <a href="https://surf-center.com/scdev_admin/admin/" class="admin-btn" target="_blank" rel="noopener">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Admin
+    </a>
   </header>
   <div class="grid">
     <a href="https://surf-center.github.io/calculator/" class="card calculator" target="_blank" rel="noopener">
-      <div class="card-icon"><span class="emoji">🔢</span></div>
-     <div class="card-title">Margins</div>     
-     <div class="card-desc">Bereken prijzen en marges</div>
+      <div class="card-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="2" width="16" height="20" rx="2"/>
+          <line x1="8" y1="6" x2="16" y2="6"/>
+          <line x1="8" y1="10" x2="10" y2="10"/>
+          <line x1="14" y1="10" x2="16" y2="10"/>
+          <line x1="8" y1="14" x2="10" y2="14"/>
+          <line x1="14" y1="14" x2="16" y2="14"/>
+          <line x1="8" y1="18" x2="10" y2="18"/>
+          <line x1="14" y1="18" x2="16" y2="18"/>
+        </svg>
+      </div>
+      <div class="card-title">Margins</div>
+      <div class="card-desc">Bereken prijzen en marges</div>
       <div class="card-arrow">
         Open
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -175,7 +283,7 @@
     <a href="https://surf-center.github.io/my-balance/" class="card balance" target="_blank" rel="noopener">
       <div class="card-icon">
         <img src="https://surf-center.github.io/my-balance/favicon.ico"
-             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>💰</span>';" alt="">
+             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>üí∞</span>';" alt="">
       </div>
       <div class="card-title">My Balance</div>
       <div class="card-desc">Inzicht in je consignatie status en saldo</div>
@@ -187,7 +295,7 @@
     <a href="https://surf-center.github.io/tracking/" class="card tracking" target="_blank" rel="noopener">
       <div class="card-icon">
         <img src="https://surf-center.github.io/tracking/favicon.ico"
-             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>📦</span>';" alt="">
+             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>üì¶</span>';" alt="">
       </div>
       <div class="card-title">Tracking</div>
       <div class="card-desc">Volg de status van je orders</div>
@@ -196,12 +304,12 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </div>
     </a>
-    <a href="https://surf-center.github.io/sales/" class="card sales" target="_blank" rel="noopener">
+    <a href="https://surf-center.github.io/inventory/" class="card sales" target="_blank" rel="noopener">
       <div class="card-icon">
         <img src="https://surf-center.github.io/sales/favicon.ico"
-             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>🏷️</span>';" alt="">
+             onerror="this.onerror=null; this.outerHTML='<span class=&quot;emoji&quot;>üè∑Ô∏è</span>';" alt="">
       </div>
-      <div class="card-title">Sales</div>
+      <div class="card-title">Inventory</div>
       <div class="card-desc">Producten inzien en orders doorgeven</div>
       <div class="card-arrow">
         Open
@@ -209,7 +317,7 @@
       </div>
     </a>
     <div class="card dashboard">
-      <div class="card-icon"><span class="emoji">📊</span></div>
+      <div class="card-icon"><span class="emoji">üìä</span></div>
       <div class="card-title">Dashboards</div>
       <div class="card-desc">Omzet, bestellingen en marges</div>
       <div class="card-links">
@@ -223,8 +331,28 @@
         </a>
       </div>
     </div>
+    <a href="https://surf-center.github.io/warranty/" class="card warranty" target="_blank" rel="noopener">
+      <div class="card-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+      </div>
+      <div class="card-title">Warranty</div>
+      <div class="card-desc">Garantie aanvragen en beheren</div>
+      <div class="card-arrow">
+        Open
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </a>
     <div class="card leads">
-      <div class="card-icon"><span class="emoji">🎯</span></div>
+      <div class="card-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
+          <line x1="19" y1="8" x2="19" y2="14"/>
+          <line x1="16" y1="11" x2="22" y2="11"/>
+        </svg>
+      </div>
       <div class="card-title">Leads</div>
       <div class="card-desc">Leads via WhatsApp of de webshop</div>
       <div class="card-links">
@@ -232,13 +360,50 @@
           WhatsApp
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
-        <a href="https://surf-center.com/scdev_admin/xnotif/subscription/index/key/52bb4178aed591b3e9f55e33abad49923efdfb08b9ed0d22db8b8c73312b23b5/" class="card-link" target="_blank" rel="noopener">
-          Webshop
+        <button class="card-link" onclick="openOutOfStock()">
+          Out of stock
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+        </button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- IFRAME MODAL -->
+<div id="iframeModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span>Out of Stock Leads</span>
+      <button class="modal-close" onclick="closeOutOfStock()">&#x2715;</button>
+    </div>
+    <iframe id="iframeContent" src="" title="Out of Stock Leads"></iframe>
+  </div>
+</div>
+
+<script>
+  function openOutOfStock() {
+    const modal = document.getElementById('iframeModal');
+    const iframe = document.getElementById('iframeContent');
+    if (!iframe.src || iframe.src === window.location.href) {
+      iframe.src = 'out-of-stock-leads.html';
+    }
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeOutOfStock() {
+    document.getElementById('iframeModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('iframeModal').addEventListener('click', function(e) {
+    if (e.target === this) closeOutOfStock();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeOutOfStock();
+  });
+</script>
 </body>
 </html>
+
